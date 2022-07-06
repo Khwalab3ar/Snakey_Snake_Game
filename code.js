@@ -1,92 +1,116 @@
-const snake = document.querySelector('.snake')
-const food = document.querySelector('.food')
+//Working animation
+const gameArena = document.querySelector('section')
+const newSnake = []
+const snake = []
 const arrow = 'Arrow'
-let movingSnake = true
-let arrowKey = ''
-//Vertical movement
-let movementV = 0
-//Horizontal movement
-let movementH = 0
-let moveDirection = ''
+const gridSize = 784
+const centerSnake = gridSize / 2 + 14
+let deleteSnake = 0
+let foodEaten = false
+let addedSnake = centerSnake
+let rando = false
+let animate = null
 
-// Initial Snake
-snake.style.top = `50%`
-snake.style.left = `50%`
-// Snake css top value
-let snakeH = snake.style.top
-snakeH = snakeH.replace('%', '')
-// Snake css left value
-let snakeV = snake.style.left
-snakeV = snakeV.replace('%', '')
-
+for (let i = 0; i < gridSize; i++) {
+  const createDiv = document.createElement('div')
+  //delete later V
+  createDiv.style.backgroundColor = '#f19c4d'
+  createDiv.setAttribute(`id`, `box${i}`)
+  gameArena.appendChild(createDiv)
+}
+const snakeSize = () => {
+  if (snake.length === 0) {
+    snake.push(centerSnake)
+  }
+  for (let i = 0; i < snake.length; i++) {
+    const locationSquare = document.querySelector(`#box${snake[i]}`)
+    locationSquare.style.backgroundColor = '#fff'
+    locationSquare.style.borderRadius = ''
+  }
+}
+const foodLocation = () => {
+  let randNum = Math.floor(Math.random() * gridSize)
+  while (rando === false) {
+    snake.forEach((n) => {
+      rando = false
+      if (randNum === n) {
+        rando = false
+      } else {
+        rando = true
+      }
+    })
+  }
+  food = randNum
+  locationSquare = document.querySelector(`#box${randNum}`)
+  locationSquare.style.backgroundColor = '#4f7d5b'
+  locationSquare.style.borderRadius = '50%'
+}
 const upArrowPressed = () => {
-  //movementV = snakeH--
-  //snake.style.top = `${movementV}%`
-  console.log('Pressed function')
-  moving(snakeH, 'up')
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake('up')
+  }, 150)
 }
 
 const downArrowPressed = () => {
-  //movementV = snakeH++
-  //snake.style.top = `${movementV}%`
-  moving(snakeH, 'down')
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake('down')
+  }, 140)
 }
 
 const leftArrowPressed = () => {
-  //movementH = snakeV--
-  //snake.style.left = `${movementH}%`
-  moving(snakeV, 'left')
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake('left')
+  }, 150)
 }
 
 const rightArrowPressed = () => {
-  //movementH = snakeV++
-  //snake.style.left = `${movementH}%`
-  moving(snakeV, 'right')
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake('right')
+  }, 150)
 }
-
-const stopMove = () => {
-  console.log('sankey')
-  movingSnake = false
-}
-
-const moving = (moving, direction) => {
-  let i = 0
-  while (movingSnake) {
-    console.log('made it here')
-    switch (direction) {
-      case 'up':
-        movementV = snakeH--
-        setTimeout(() => {
-          snake.style.top = `${movementV}%`
-        }, 1000)
-        window.addEventListener('keydown', stopMove)
-        break
-      case 'down':
-        movementV = snakeH++
-        setTimeout(() => {
-          snake.style.top = `${movementV}%`
-        }, 1000)
-        window.addEventListener('keydown', stopMove)
-        break
-      case 'left':
-        movementH = snakeV--
-        setTimeout(() => {
-          snake.style.left = `${movementH}%`
-        }, 1000)
-        window.addEventListener('keydown', stopMove)
-        break
-      case 'right':
-        movementH = snakeV++
-        setTimeout(() => {
-          snake.style.left = `${movementH}%`
-        }, 1000)
-        window.addEventListener('keydown', stopMove)
-        break
-      default:
-        ''
-    }
+const growOrMove = (addedSnake) => {
+  if (snake[snake.length - 1] === food) {
+    foodEaten = true
+    foodLocation()
+  } else {
+    foodEaten = false
   }
-  movingSnake = true
+  if (foodEaten) {
+    foodEaten = false
+    snake.push(addedSnake)
+  } else {
+    snake.push(addedSnake)
+    locationSquare = document.querySelector(`#box${snake.shift()}`)
+    locationSquare.style.backgroundColor = '#f19c4d'
+    locationSquare.style.borderRadius = ''
+  }
+  snakeSize()
+}
+const animateSnake = (direction) => {
+  switch (direction) {
+    case 'up':
+      addedSnake -= 28
+      growOrMove(addedSnake)
+      break
+    case 'down':
+      addedSnake += 28
+      growOrMove(addedSnake)
+      break
+    case 'left':
+      addedSnake--
+      growOrMove(addedSnake)
+      break
+    case 'right':
+      addedSnake++
+      growOrMove(addedSnake)
+      break
+    default:
+      ''
+  }
 }
 const arrowKeyPressed = (e) => {
   arrowKey = e.code
@@ -107,4 +131,6 @@ const arrowKeyPressed = (e) => {
       return
   }
 }
+snakeSize()
+foodLocation()
 window.addEventListener('keydown', arrowKeyPressed)

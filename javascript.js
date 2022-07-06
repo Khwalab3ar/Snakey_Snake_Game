@@ -8,6 +8,7 @@ let deleteSnake = 0
 let foodEaten = false
 let addedSnake = centerSnake
 let rando = false
+let animate = null
 
 for (let i = 0; i < gridSize; i++) {
   const createDiv = document.createElement('div')
@@ -44,23 +45,31 @@ const foodLocation = () => {
   locationSquare.style.borderRadius = '50%'
 }
 const upArrowPressed = () => {
-  addedSnake -= 28
-  growOrMove(addedSnake)
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake('up')
+  }, 150)
 }
 
 const downArrowPressed = () => {
-  addedSnake += 28
-  growOrMove(addedSnake)
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake('down')
+  }, 140)
 }
 
 const leftArrowPressed = () => {
-  addedSnake--
-  growOrMove(addedSnake)
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake('left')
+  }, 150)
 }
 
 const rightArrowPressed = () => {
-  addedSnake++
-  growOrMove(addedSnake)
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake('right')
+  }, 150)
 }
 const growOrMove = (addedSnake) => {
   if (snake[snake.length - 1] === food) {
@@ -80,7 +89,28 @@ const growOrMove = (addedSnake) => {
   }
   snakeSize()
 }
-
+const animateSnake = (direction) => {
+  switch (direction) {
+    case 'up':
+      addedSnake -= 28
+      growOrMove(addedSnake)
+      break
+    case 'down':
+      addedSnake += 28
+      growOrMove(addedSnake)
+      break
+    case 'left':
+      addedSnake--
+      growOrMove(addedSnake)
+      break
+    case 'right':
+      addedSnake++
+      growOrMove(addedSnake)
+      break
+    default:
+      ''
+  }
+}
 const arrowKeyPressed = (e) => {
   arrowKey = e.code
   switch (arrowKey) {

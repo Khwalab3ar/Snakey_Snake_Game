@@ -1,7 +1,9 @@
 const gameArena = document.querySelector('section')
-const snake = []
+const resetBtn = document.querySelector('.reset')
+const board = document.querySelectorAll('.board')
 const gridSize = 784
 const centerSnake = gridSize / 2 + 14
+let snake = []
 let deleteSnake = 0 //What is this for?
 let foodEaten = false
 let addedSnake = centerSnake
@@ -159,13 +161,36 @@ const arrowKeyPressed = (e) => {
 
 const gameOver = () => {
   alert('GAME OVER')
-  let board = document.querySelectorAll('.board')
   board.forEach((b) => {
     b.style.opacity = '0'
   })
   window.removeEventListener('keydown', arrowKeyPressed)
 }
 
+const reset = () => {
+  foodEaten = false
+  addedSnake = centerSnake
+  rando = false
+  animate = null
+  direction = ''
+  snake = []
+  board.forEach((b) => {
+    b.style.opacity = '1'
+  })
+  for (let i = 0; i < gridSize; i++) {
+    const box = document.querySelector(`#box${i}`).style
+    if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {
+      box.backgroundColor = '#000'
+    } else {
+      box.backgroundColor = '#f19c4d'
+    }
+    box.borderRadius = ''
+  }
+  snakeSize()
+  foodLocation()
+}
+
 snakeSize()
 foodLocation()
 window.addEventListener('keydown', arrowKeyPressed)
+resetBtn.addEventListener('click', reset)

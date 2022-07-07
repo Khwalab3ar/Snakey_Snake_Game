@@ -1,36 +1,71 @@
 *{
   box-sizing: border-box;
-  color: #ffffff;
+  color: #d44626;
   margin:0;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 main{
-  background-color: #923b55;
-}
-header{
-  padding: 2em;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 10vh 80vh 10vh;
+  overflow: auto;
+  background-color: #081587;
 }
 
+header{
+  padding: 2em;
+  text-align: center;
+}
+
+h1, #score, #level{
+  border:.5vh solid #3792ab;
+  border-radius: 1vh;
+  padding: .5vh 2vh;
+  background-color: #39968c;
+}
+
+h1{
+  margin-top: -2vh;
+}
 section{
-  align-content: center;
-  justify-content: center;
-  display: grid;
   background-color: #772727;
-  border:2px solid #ffffff;
-  height: 700px;
+  border:1vh solid #3792ab;
+  border-radius: 5vh;
 }
 
 footer{
   display: flex;
-  justify-content: end;
-  height: 50px;
+  justify-content:space-evenly;
 }
-.game-page{
-  grid-template-columns: repeat(28,20px);
-  grid-template-rows: repeat(28,20px);
+
+button{
+  width: 10vh;
+  height: 5vh;
+  margin: 2.5vh auto;
+  border-radius: 1vh;
+  border: .5vh solid #3792ab;
+  background-color: aqua;
 }
+
+a{
+  text-decoration: none;
+}
+.game-area{
+  padding:0;
+  justify-content: center;
+  background-color: blanchedalmond;
+  width: 72vh;
+  margin: 3vh auto;
+  display: grid;
+  grid-template-columns: repeat(28,2.5vh);
+  grid-template-rows: repeat(28,2.5vh);
+  border-radius: 5%;
+  border: 1vh solid #edae6f;
+}
+.game{
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
 .game-done{
   text-align: center;
   margin: 0 auto;
@@ -40,8 +75,29 @@ footer{
   left:40%;
 }
 .start{
-  font-size: 50px;
+  text-align: center;
+  margin:  36vh 48vh;
+  background-color: #923b55;
+  font-size: 5vh;
+  border:.5vh solid #edae6f;
+  border-radius: 1vh;
+  padding-bottom:.5vh;
 }
 .title{
   margin: 0 auto;
 }
+
+#box0{
+  border-radius: 100% 0 0 0;
+}
+
+#box27{
+  border-radius: 0 100% 0 0;
+}
+#box756{
+  border-radius: 0 0 0 100%;
+}
+#box783{
+  border-radius: 0 0 100% 0;
+}
+

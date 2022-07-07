@@ -1,4 +1,4 @@
-const gameArena = document.querySelector('section')
+const gameArena = document.querySelector('.game-area')
 const resetBtn = document.querySelector('#reset')
 const gridSize = 784
 const centerSnake = gridSize / 2 + 14
@@ -27,7 +27,6 @@ for (let i = 0; i < gridSize; i++) {
     createDiv.style.backgroundColor = '#000'
     createDiv.setAttribute('class', 'board no-go')
   } else {
-    createDiv.style.backgroundColor = '#f19c4d'
     createDiv.setAttribute('class', 'board')
   }
   createDiv.setAttribute(`id`, `box${i}`)
@@ -187,7 +186,7 @@ const arrowKeyPressed = (e) => {
 }
 
 const scoreOrLevel = () => {
-  if (count === 15) {
+  if (count === 4) {
     speed -= 5
     playerLevel++
     level.innerHTML = `Level : ${playerLevel}`
@@ -200,7 +199,6 @@ const scoreOrLevel = () => {
   score.innerHTML = `Score :  ${playerScore}`
 }
 const gameOver = () => {
-  console.log('snake array : ', snake, 'food: ', food)
   board.forEach((b) => {
     b.style.opacity = '0'
   })

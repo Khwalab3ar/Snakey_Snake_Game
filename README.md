@@ -37,6 +37,7 @@
 ## _Future Updates_
 
 - [ ] Compatible with mobile
+- [ ] Smoother Transition
 
 ---
 

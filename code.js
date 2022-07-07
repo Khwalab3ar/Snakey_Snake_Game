@@ -1,5 +1,5 @@
 //Working animation
-const gameArena = document.querySelector('section')
+/*const gameArena = document.querySelector('section')
 const newSnake = []
 const snake = []
 const arrow = 'Arrow'
@@ -134,3 +134,4 @@ const arrowKeyPressed = (e) => {
 snakeSize()
 foodLocation()
 window.addEventListener('keydown', arrowKeyPressed)
+*/

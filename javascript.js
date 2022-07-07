@@ -9,6 +9,7 @@ let foodEaten = false
 let addedSnake = centerSnake
 let rando = false
 let animate = null
+let direction = ''
 
 for (let i = 0; i < gridSize; i++) {
   const createDiv = document.createElement('div')
@@ -44,33 +45,7 @@ const foodLocation = () => {
   locationSquare.style.backgroundColor = '#4f7d5b'
   locationSquare.style.borderRadius = '50%'
 }
-const upArrowPressed = () => {
-  clearInterval(animate)
-  animate = setInterval(function () {
-    animateSnake('up')
-  }, 150)
-}
 
-const downArrowPressed = () => {
-  clearInterval(animate)
-  animate = setInterval(function () {
-    animateSnake('down')
-  }, 140)
-}
-
-const leftArrowPressed = () => {
-  clearInterval(animate)
-  animate = setInterval(function () {
-    animateSnake('left')
-  }, 150)
-}
-
-const rightArrowPressed = () => {
-  clearInterval(animate)
-  animate = setInterval(function () {
-    animateSnake('right')
-  }, 150)
-}
 const growOrMove = (addedSnake) => {
   if (snake[snake.length - 1] === food) {
     foodEaten = true
@@ -112,23 +87,12 @@ const animateSnake = (direction) => {
   }
 }
 const arrowKeyPressed = (e) => {
-  arrowKey = e.code
-  switch (arrowKey) {
-    case arrow + 'Up':
-      upArrowPressed()
-      break
-    case arrow + 'Down':
-      downArrowPressed()
-      break
-    case arrow + 'Left':
-      leftArrowPressed()
-      break
-    case arrow + 'Right':
-      rightArrowPressed()
-      break
-    default:
-      return
-  }
+  direction = e.code.replace('Arrow', '').toLowerCase()
+  console.log(direction)
+  clearInterval(animate)
+  animate = setInterval(function () {
+    animateSnake(direction)
+  }, 125)
 }
 snakeSize()
 foodLocation()

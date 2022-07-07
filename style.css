@@ -30,7 +30,14 @@ footer{
   height: 50px;
 }
 
-
+.game-done{
+  text-align: center;
+  margin: 0 auto;
+  opacity: 0;
+  position: fixed;
+  top:40%;
+  left:40%;
+}
 .start{
   display:none;
 }

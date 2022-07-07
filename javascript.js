@@ -2,6 +2,13 @@ const gameArena = document.querySelector('section')
 const resetBtn = document.querySelector('#reset')
 const gridSize = 784
 const centerSnake = gridSize / 2 + 14
+const level = document.querySelector('#level')
+const score = document.querySelector('#score')
+const gameOverSceen = document.querySelector('.game-done')
+const noGoSquares = []
+let playerScore = 0
+let playerLevel = 1
+let count = 0
 let snake = []
 let deleteSnake = 0 //What is this for?
 let foodEaten = false
@@ -16,15 +23,26 @@ for (let i = 0; i < gridSize; i++) {
   //delete later V
   if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {
     createDiv.style.backgroundColor = '#000'
+    createDiv.setAttribute('class', 'board no-go')
   } else {
     createDiv.style.backgroundColor = '#f19c4d'
+    createDiv.setAttribute('class', 'board')
   }
-  createDiv.setAttribute('class', 'board')
   createDiv.setAttribute(`id`, `box${i}`)
   gameArena.appendChild(createDiv)
 }
+score.innerHTML = `Score :  ${playerScore}`
+level.innerHTML = `Level : ${playerLevel}`
 // grabs all create div boxes
+// will try and use to make code simplier ***future
 const board = document.querySelectorAll('.board')
+const noGo = document.querySelectorAll('.no-go')
+noGo.forEach((no) => {
+  let boxNum = no.getAttribute('id')
+  boxNum = boxNum.replace('box', '')
+  noGoSquares.push(boxNum)
+})
+console.log(noGoSquares)
 
 //Ways to lose game, touch border, or self
 const restraint = () => {
@@ -69,10 +87,10 @@ const snakeSize = () => {
 // figure out why it stops? change range of random to smaller
 const foodLocation = () => {
   let randNum = Math.floor(Math.random() * gridSize)
-  while (rando === false) {
-    snake.forEach((n) => {
-      rando = false
-      if (randNum === n) {
+  snake.forEach((n) => {
+    rando = false
+    while (rando === false) {
+      if (n === randNum) {
         rando = false
         randNum = Math.floor(Math.random() * gridSize)
       } else if (
@@ -86,8 +104,8 @@ const foodLocation = () => {
       } else {
         rando = true
       }
-    })
-  }
+    }
+  })
   food = randNum
   locationSquare = document.querySelector(`#box${randNum}`)
   locationSquare.style.backgroundColor = '#4f7d5b'
@@ -97,6 +115,9 @@ const foodLocation = () => {
 const growOrMove = (addedSnake) => {
   if (snake[snake.length - 1] === food) {
     foodEaten = true
+    count++
+    scoreOrLevel()
+    score.innerHTML = `Score:  ${playerScore}`
     foodLocation()
   } else {
     foodEaten = false
@@ -161,11 +182,22 @@ const arrowKeyPressed = (e) => {
   }, 125)
 }
 
+const scoreOrLevel = () => {
+  if (count === 15) {
+    playerLevel++
+    level.innerHTML = `Level : ${playerLevel}`
+    count = 0
+    playerScore = 0
+  } else {
+    playerScore += 5
+  }
+  score.innerHTML = `Score :  ${playerScore}`
+}
 const gameOver = () => {
-  alert('GAME OVER')
   board.forEach((b) => {
     b.style.opacity = '0'
   })
+  gameOverSceen.style.opacity = '1'
   window.removeEventListener('keydown', arrowKeyPressed)
 }
 
@@ -176,6 +208,7 @@ const reset = () => {
   animate = null
   direction = ''
   snake = []
+  playerScore = 0
   for (let i = 0; i < gridSize; i++) {
     const box = document.querySelector(`#box${i}`).style
     if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {
@@ -185,6 +218,7 @@ const reset = () => {
     }
     box.opacity = '1'
     box.borderRadius = ''
+    window.addEventListener('keydown', arrowKeyPressed)
   }
   snakeSize()
   foodLocation()

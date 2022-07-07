@@ -1,23 +1,57 @@
 const gameArena = document.querySelector('section')
-const newSnake = []
 const snake = []
-const arrow = 'Arrow'
 const gridSize = 784
 const centerSnake = gridSize / 2 + 14
-let deleteSnake = 0
+let deleteSnake = 0 //What is this for?
 let foodEaten = false
 let addedSnake = centerSnake
 let rando = false
 let animate = null
 let direction = ''
+let lastDirection = ''
 
 for (let i = 0; i < gridSize; i++) {
   const createDiv = document.createElement('div')
   //delete later V
-  createDiv.style.backgroundColor = '#f19c4d'
+  if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {
+    createDiv.style.backgroundColor = '#000'
+  } else {
+    createDiv.style.backgroundColor = '#f19c4d'
+  }
+  createDiv.setAttribute('class', 'board')
   createDiv.setAttribute(`id`, `box${i}`)
   gameArena.appendChild(createDiv)
 }
+//Ways to lose game, touch border, or self
+const restraint = () => {
+  if (
+    snake[0] % 28 === 27 ||
+    snake[0] % 28 === 0 ||
+    snake[0] < 28 ||
+    snake[0] > 756
+  ) {
+    clearInterval(animate)
+    gameOver()
+    return true
+  } else if (snake.length > 3) {
+    for (let i = 0; i < snake.length; i++) {
+      if (i > 3) {
+        if (snake[0] === snake[i]) {
+          clearInterval(animate)
+          gameOver()
+          return true
+        } else {
+          ;('')
+        }
+      } else {
+        ;('')
+      }
+    }
+  } else {
+    ;('')
+  }
+}
+
 const snakeSize = () => {
   if (snake.length === 0) {
     snake.push(centerSnake)
@@ -28,6 +62,7 @@ const snakeSize = () => {
     locationSquare.style.borderRadius = ''
   }
 }
+// figure out why it stops? change range of random to smaller
 const foodLocation = () => {
   let randNum = Math.floor(Math.random() * gridSize)
   while (rando === false) {
@@ -35,6 +70,15 @@ const foodLocation = () => {
       rando = false
       if (randNum === n) {
         rando = false
+        randNum = Math.floor(Math.random() * gridSize)
+      } else if (
+        randNum % 28 === 27 ||
+        randNum % 28 === 0 ||
+        randNum < 28 ||
+        randNum > 756
+      ) {
+        rando = false
+        randNum = Math.floor(Math.random() * gridSize)
       } else {
         rando = true
       }
@@ -63,37 +107,65 @@ const growOrMove = (addedSnake) => {
     locationSquare.style.borderRadius = ''
   }
   snakeSize()
+  restraint()
 }
 const animateSnake = (direction) => {
   switch (direction) {
     case 'up':
-      addedSnake -= 28
-      growOrMove(addedSnake)
+      if (lastDirection === 'down') {
+        return
+      } else {
+        addedSnake -= 28
+        growOrMove(addedSnake)
+      }
       break
     case 'down':
-      addedSnake += 28
-      growOrMove(addedSnake)
+      if (lastDirection === 'up') {
+        return
+      } else {
+        addedSnake += 28
+        growOrMove(addedSnake)
+      }
       break
     case 'left':
-      addedSnake--
-      growOrMove(addedSnake)
+      if (lastDirection === 'right') {
+        return
+      } else {
+        addedSnake--
+        growOrMove(addedSnake)
+      }
       break
     case 'right':
-      addedSnake++
-      growOrMove(addedSnake)
+      if (lastDirection === 'left') {
+        return
+      } else {
+        addedSnake++
+        growOrMove(addedSnake)
+      }
       break
     default:
       ''
   }
+  lastDirection = direction
+  console.log(lastDirection)
 }
 const arrowKeyPressed = (e) => {
   direction = e.code.replace('Arrow', '').toLowerCase()
-  console.log(direction)
   clearInterval(animate)
   animate = setInterval(function () {
     animateSnake(direction)
   }, 125)
 }
+
+const gameOver = () => {
+  alert('GAME OVER')
+  let board = document.querySelectorAll('.board')
+  board.forEach((b) => {
+    b.style.opacity = '0'
+  })
+  window.removeEventListener('keydown', arrowKeyPressed)
+}
+
 snakeSize()
 foodLocation()
 window.addEventListener('keydown', arrowKeyPressed)

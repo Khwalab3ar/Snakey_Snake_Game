@@ -134,4 +134,35 @@ const arrowKeyPressed = (e) => {
 snakeSize()
 foodLocation()
 window.addEventListener('keydown', arrowKeyPressed)
-*/
+const restraint = () => {
+  switch (true) {
+    case snake[0] % 28 === 27:
+      console.log('i stopped at the first case')
+      clearInterval(animate)
+      gameOver()
+      return true
+      break
+      case snake[0] % 28 === 0:
+        console.log('i stopped at the second case')
+        clearInterval(animate)
+        gameOver()
+        return true
+        break
+        default:
+          // currently not working
+          if (snake.length > 1) {
+            snake.forEach((s) => {
+              if (snake[0] === s) {
+                console.log('i stopped at the default case', snake, ' ', s)
+                clearInterval(animate)
+                gameOver()
+                return true
+              } else {
+                ;('')
+              }
+            })
+          }
+        }
+      }
+      
+      */

@@ -17,6 +17,8 @@ let rando = false
 let animate = null
 let direction = ''
 let lastDirection = ''
+let speed = 125
+let pointInterval = 5
 
 for (let i = 0; i < gridSize; i++) {
   const createDiv = document.createElement('div')
@@ -55,9 +57,10 @@ const restraint = () => {
     gameOver()
     return true
   } else if (snake.length > 3) {
+    // Game end when snake touch itself
     for (let i = 0; i < snake.length; i++) {
       if (i > 3) {
-        if (snake[0] === snake[i]) {
+        if (snake[snake.length - 1] === snake[i] && i != snake.length - 1) {
           clearInterval(animate)
           gameOver()
           return true
@@ -180,21 +183,24 @@ const arrowKeyPressed = (e) => {
   clearInterval(animate)
   animate = setInterval(function () {
     animateSnake(direction)
-  }, 125)
+  }, speed)
 }
 
 const scoreOrLevel = () => {
   if (count === 15) {
+    speed -= 5
     playerLevel++
     level.innerHTML = `Level : ${playerLevel}`
+    pointInterval += 5
     count = 0
     playerScore = 0
   } else {
-    playerScore += 5
+    playerScore += pointInterval
   }
   score.innerHTML = `Score :  ${playerScore}`
 }
 const gameOver = () => {
+  console.log('snake array : ', snake, 'food: ', food)
   board.forEach((b) => {
     b.style.opacity = '0'
   })
@@ -211,6 +217,8 @@ const reset = () => {
   snake = []
   playerScore = 0
   gameOverSceen.style.opacity = '0'
+  speed = 125
+  pointInterval = 5
   for (let i = 0; i < gridSize; i++) {
     const box = document.querySelector(`#box${i}`).style
     if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {

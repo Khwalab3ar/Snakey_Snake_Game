@@ -36,12 +36,16 @@
 
 ## _Future Updates_
 
-- [ ] TBA
+- [ ] Compatible with mobile
 
 ---
 
 ## _Credits_
 
-### TBA
+### [MDN](https://developer.mozilla.org/en-US/)
+
+### [W3Schools](https://www.w3schools.com/default.asp)
+
+### [Stack OverFlow](https://stackoverflow.com/)
 
 ---

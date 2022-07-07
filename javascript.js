@@ -24,7 +24,7 @@ for (let i = 0; i < gridSize; i++) {
   const createDiv = document.createElement('div')
   //delete later V
   if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {
-    createDiv.style.backgroundColor = '#000'
+    createDiv.style.backgroundColor = '#edae6f'
     createDiv.setAttribute('class', 'board no-go')
   } else {
     createDiv.setAttribute('class', 'board')
@@ -109,7 +109,7 @@ const foodLocation = () => {
   })
   food = randNum
   locationSquare = document.querySelector(`#box${randNum}`)
-  locationSquare.style.backgroundColor = '#4f7d5b'
+  locationSquare.style.backgroundColor = '#081336'
   locationSquare.style.borderRadius = '50%'
 }
 
@@ -129,7 +129,7 @@ const growOrMove = (addedSnake) => {
   } else {
     snake.push(addedSnake)
     locationSquare = document.querySelector(`#box${snake.shift()}`)
-    locationSquare.style.backgroundColor = '#f19c4d'
+    locationSquare.style.backgroundColor = '#c75136'
     locationSquare.style.borderRadius = ''
   }
   snakeSize()
@@ -214,15 +214,18 @@ const reset = () => {
   direction = ''
   snake = []
   playerScore = 0
+  playerLevel = 0
   gameOverSceen.style.opacity = '0'
   speed = 125
   pointInterval = 5
+  score.innerHTML = `Score :  ${playerScore}`
+  level.innerHTML = `Level : ${playerLevel}`
   for (let i = 0; i < gridSize; i++) {
     const box = document.querySelector(`#box${i}`).style
     if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {
-      box.backgroundColor = '#000'
+      box.backgroundColor = '#edae6f'
     } else {
-      box.backgroundColor = '#f19c4d'
+      box.backgroundColor = ''
     }
     box.opacity = '1'
     box.borderRadius = ''

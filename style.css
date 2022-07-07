@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
 *{
   box-sizing: border-box;
-  color: #d44626;
+  color: #fff;
   margin:0;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  /*font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif*/
+  font-family: 'Work Sans', sans-serif;
 }
 main{
   display: grid;
   grid-template-rows: 10vh 80vh 10vh;
   overflow: auto;
-  background-color: #081587;
+  background-color:#081336;
 }
 
 header{
@@ -17,19 +20,21 @@ header{
 }
 
 h1, #score, #level{
-  border:.5vh solid #3792ab;
+  border:.75vh solid #53bcd6;
   border-radius: 1vh;
   padding: .5vh 2vh;
-  background-color: #39968c;
+  background-color: #376b5f;
 }
 
 h1{
   margin-top: -2vh;
 }
 section{
-  background-color: #772727;
-  border:1vh solid #3792ab;
+  margin: 0 auto;
+  background-color: #c78866;
+  border:2vh solid #53bcd6;
   border-radius: 5vh;
+  width: 95%;
 }
 
 footer{
@@ -43,7 +48,7 @@ button{
   margin: 2.5vh auto;
   border-radius: 1vh;
   border: .5vh solid #3792ab;
-  background-color: aqua;
+  background-color: #2a768a;
 }
 
 a{
@@ -52,14 +57,14 @@ a{
 .game-area{
   padding:0;
   justify-content: center;
-  background-color: blanchedalmond;
-  width: 72vh;
-  margin: 3vh auto;
+  background-color: #c75136;
+  width: 71.75vh;
+  margin: 2vh auto;
   display: grid;
   grid-template-columns: repeat(28,2.5vh);
   grid-template-rows: repeat(28,2.5vh);
   border-radius: 5%;
-  border: 1vh solid #edae6f;
+  border: 1vh solid #ffffff;
 }
 .game{
   display: grid;
@@ -77,16 +82,19 @@ a{
 .start{
   text-align: center;
   margin:  36vh 48vh;
-  background-color: #923b55;
+  background-color: #c75136;
   font-size: 5vh;
-  border:.5vh solid #edae6f;
+  border:.5vh solid #fff;
   border-radius: 1vh;
   padding-bottom:.5vh;
 }
 .title{
   margin: 0 auto;
 }
-
+#reset, #end-button{
+  font-size: 2.5vh;
+  background-color: #c75136;
+}
 #box0{
   border-radius: 100% 0 0 0;
 }

@@ -1,6 +1,5 @@
 const gameArena = document.querySelector('section')
-const resetBtn = document.querySelector('.reset')
-const board = document.querySelectorAll('.board')
+const resetBtn = document.querySelector('#reset')
 const gridSize = 784
 const centerSnake = gridSize / 2 + 14
 let snake = []
@@ -24,6 +23,9 @@ for (let i = 0; i < gridSize; i++) {
   createDiv.setAttribute(`id`, `box${i}`)
   gameArena.appendChild(createDiv)
 }
+// grabs all create div boxes
+const board = document.querySelectorAll('.board')
+
 //Ways to lose game, touch border, or self
 const restraint = () => {
   if (
@@ -174,9 +176,6 @@ const reset = () => {
   animate = null
   direction = ''
   snake = []
-  board.forEach((b) => {
-    b.style.opacity = '1'
-  })
   for (let i = 0; i < gridSize; i++) {
     const box = document.querySelector(`#box${i}`).style
     if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {
@@ -184,6 +183,7 @@ const reset = () => {
     } else {
       box.backgroundColor = '#f19c4d'
     }
+    box.opacity = '1'
     box.borderRadius = ''
   }
   snakeSize()

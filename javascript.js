@@ -42,15 +42,14 @@ noGo.forEach((no) => {
   boxNum = boxNum.replace('box', '')
   noGoSquares.push(boxNum)
 })
-console.log(noGoSquares)
 
 //Ways to lose game, touch border, or self
 const restraint = () => {
   if (
-    snake[0] % 28 === 27 ||
-    snake[0] % 28 === 0 ||
-    snake[0] < 28 ||
-    snake[0] > 756
+    snake[snake.length - 1] % 28 === 27 ||
+    snake[snake.length - 1] % 28 === 0 ||
+    snake[snake.length - 1] < 28 ||
+    snake[snake.length - 1] > 756
   ) {
     clearInterval(animate)
     gameOver()
@@ -138,32 +137,36 @@ const animateSnake = (direction) => {
   switch (direction) {
     case 'up':
       if (lastDirection === 'down') {
-        return
+        animateSnake('down')
       } else {
+        lastDirection = direction
         addedSnake -= 28
         growOrMove(addedSnake)
       }
       break
     case 'down':
       if (lastDirection === 'up') {
-        return
+        animateSnake('up')
       } else {
+        lastDirection = direction
         addedSnake += 28
         growOrMove(addedSnake)
       }
       break
     case 'left':
       if (lastDirection === 'right') {
-        return
+        animateSnake('right')
       } else {
+        lastDirection = direction
         addedSnake--
         growOrMove(addedSnake)
       }
       break
     case 'right':
       if (lastDirection === 'left') {
-        return
+        animateSnake('left')
       } else {
+        lastDirection = direction
         addedSnake++
         growOrMove(addedSnake)
       }
@@ -171,8 +174,6 @@ const animateSnake = (direction) => {
     default:
       ''
   }
-  lastDirection = direction
-  console.log(lastDirection)
 }
 const arrowKeyPressed = (e) => {
   direction = e.code.replace('Arrow', '').toLowerCase()
@@ -209,6 +210,7 @@ const reset = () => {
   direction = ''
   snake = []
   playerScore = 0
+  gameOverSceen.style.opacity = '0'
   for (let i = 0; i < gridSize; i++) {
     const box = document.querySelector(`#box${i}`).style
     if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {

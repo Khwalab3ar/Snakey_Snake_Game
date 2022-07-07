@@ -17,8 +17,6 @@ section{
   align-content: center;
   justify-content: center;
   display: grid;
-  grid-template-columns: repeat(28,20px);
-  grid-template-rows: repeat(28,20px);
   background-color: #772727;
   border:2px solid #ffffff;
   height: 700px;
@@ -29,7 +27,10 @@ footer{
   justify-content: end;
   height: 50px;
 }
-
+.game-page{
+  grid-template-columns: repeat(28,20px);
+  grid-template-rows: repeat(28,20px);
+}
 .game-done{
   text-align: center;
   margin: 0 auto;
@@ -39,7 +40,8 @@ footer{
   left:40%;
 }
 .start{
-  display:none;
+  font-size: 50px;
 }
 .title{
+  margin: 0 auto;
 }

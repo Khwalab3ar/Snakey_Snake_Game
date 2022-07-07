@@ -5,18 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script defer src="javascript.js" charset="utf-8"></script> 
   <title>Snakey Snake</title>
 </head>
 <body>
   <main>
     <header>
+      <div id="level">Level</div>
       <div class="title"><h1>Snakey Snake Game</h1></div>
+      <div id ="score">Score</div>
     </header>
-    <section class="home-page">
-      <div class="start"><a href="game.html">Start</a></div>
+    <section class="game-page">
     </section>
     <footer>
+      <button class="footer-btn" id="reset">reset</button>
+      <button class="footer-btn" id="end-button">End</button>
     </footer>
   </main>
+  <div class='game-done'>
+    <h1 id="game-over">GAME OVER</h1>
+  </div>
+
   </body>
 </html>

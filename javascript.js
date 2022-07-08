@@ -18,7 +18,7 @@ let rando = false
 let animate = null
 let direction = ''
 let lastDirection = ''
-let speed = 100
+let speed = 125
 let pointInterval = 5
 
 for (let i = 0; i < gridSize; i++) {
@@ -221,7 +221,7 @@ const reset = () => {
   playerScore = 0
   playerLevel = 1
   gameOverSceen.style.opacity = '0'
-  speed = 100
+  speed = 125
   pointInterval = 5
   score.innerHTML = `Score :  ${playerScore}`
   level.innerHTML = `Level : ${playerLevel}`
@@ -250,7 +250,6 @@ const forMobile = () => {
       console.log(direction)
       if (direction != '') {
         mobile = true
-        speed = 125
         clearInterval(animate)
         animate = setInterval(function () {
           animateSnake(direction)

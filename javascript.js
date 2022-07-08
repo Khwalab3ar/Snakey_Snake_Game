@@ -35,15 +35,15 @@ for (let i = 0; i < gridSize; i++) {
 }
 score.innerHTML = `Score :  ${playerScore}`
 level.innerHTML = `Level : ${playerLevel}`
-// grabs all create div boxes
 // will try and use to make code simplier ***future
-/*const board = document.querySelectorAll('.board')
+// this code cause the game border !!dont delete
+const board = document.querySelectorAll('.board')
 const noGo = document.querySelectorAll('.no-go')
 noGo.forEach((no) => {
   let boxNum = no.getAttribute('id')
   boxNum = boxNum.replace('box', '')
   noGoSquares.push(boxNum)
-})*/
+})
 
 //Ways to lose game, touch border, or self
 const restraint = () => {

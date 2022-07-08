@@ -10,7 +10,7 @@
 
 ### _Description_
 
-#### Simple snake game that allows the user to use the up, down, left, right arrow keys to move their snake around and collect dot. The snake will grow and move faster as the user collect more dots.
+#### Simple snake game that allows the user to use the up, down, left, right arrow keys on desktop to move their snake around and collect dot. The snake will grow and move faster as the user collect more dots. Users are able to play on mobile using a touch control.
 
 ---
 
@@ -30,7 +30,21 @@
 
 ## _Screenshots_
 
-### TBA
+### Desktop Home
+
+![Image](images/desktop_home.png)
+
+### Desktop Game
+
+![Image](images/desktop_game.png)
+
+### Mobile Home
+
+![Image](images/mobile_home.png)
+
+### Mobile Game
+
+![Image](images/mobile_game.png)
 
 ---
 
@@ -38,6 +52,8 @@
 
 - [ ] Compatible with mobile
 - [ ] Smoother Transition
+- [ ] Add leveling up alert
+- [ ] Add different scenerios for higher level
 
 ---
 

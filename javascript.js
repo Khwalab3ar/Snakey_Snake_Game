@@ -119,7 +119,6 @@ const growOrMove = (addedSnake) => {
     foodEaten = true
     count++
     scoreOrLevel()
-    score.innerHTML = `Score:  ${playerScore}`
     foodLocation()
   } else {
     foodEaten = false
@@ -250,7 +249,7 @@ const forMobile = () => {
       console.log(direction)
       if (direction != '') {
         mobile = true
-        speed = 150
+        speed = 125
         clearInterval(animate)
         animate = setInterval(function () {
           animateSnake(direction)

@@ -131,10 +131,9 @@ a{
 
   section{
     margin: 0 auto;
-    background-color:none;
+    background-color:transparent;
     border:none;
     border-radius:0;
-    width:0;
   }
   footer{
     margin-top: -10vh
@@ -152,7 +151,6 @@ a{
     grid-template-columns: repeat(28,2vh);
     grid-template-rows: repeat(28,2vh);
     width: 57.5vh;
-    margin: 5vh 28vh;
   }
 
   .controller{
@@ -172,14 +170,11 @@ a{
   }
 
   #score, #level{
-    font-size: 3vh;
-    width: 20vh;
+    font-size: 2vh;
+    width: 15vh;
   }
   #reset, #end-button{  
     margin-top: 6vh;
   }
 
-  #game-ex{
-    margin:0;
-  }
 }

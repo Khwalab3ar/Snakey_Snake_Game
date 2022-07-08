@@ -135,47 +135,47 @@ const growOrMove = (addedSnake) => {
   snakeSize()
   restraint()
 }
+
+// if last direction is the same as input direction, the snake wont turn
 const animateSnake = (direction) => {
   switch (direction) {
     case 'up':
       if (lastDirection === 'down') {
-        animateSnake('down')
+        addedSnake += 28
       } else {
-        lastDirection = direction
         addedSnake -= 28
-        growOrMove(addedSnake)
       }
       break
     case 'down':
       if (lastDirection === 'up') {
-        animateSnake('up')
+        addedSnake -= 28
       } else {
-        lastDirection = direction
         addedSnake += 28
-        growOrMove(addedSnake)
       }
       break
     case 'left':
       if (lastDirection === 'right') {
-        animateSnake('right')
+        addedSnake++
       } else {
-        lastDirection = direction
         addedSnake--
-        growOrMove(addedSnake)
       }
       break
     case 'right':
       if (lastDirection === 'left') {
-        animateSnake('left')
+        addedSnake--
       } else {
-        lastDirection = direction
         addedSnake++
-        growOrMove(addedSnake)
       }
       break
     default:
       ''
   }
+  if (direction === lastDirection) {
+    ;('')
+  } else {
+    lastDirection = direction
+  }
+  growOrMove(addedSnake)
 }
 const arrowKeyPressed = (e) => {
   direction = e.code.replace('Arrow', '').toLowerCase()
@@ -216,6 +216,7 @@ const reset = () => {
   rando = false
   animate = null
   direction = ''
+  lastDirection = ''
   snake = []
   playerScore = 0
   playerLevel = 1
@@ -234,8 +235,8 @@ const reset = () => {
     box.opacity = '1'
     box.borderRadius = ''
   }
-  window.addEventListener('keydown', arrowKeyPressed)
   forMobile()
+  window.addEventListener('keydown', arrowKeyPressed)
   snakeSize()
   foodLocation()
 }

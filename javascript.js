@@ -1,3 +1,4 @@
+//Note to dev... please leave comment if it's not self-explanatory
 const gameArena = document.querySelector('.game-area')
 const resetBtn = document.querySelector('#reset')
 const level = document.querySelector('#level')
@@ -11,7 +12,6 @@ let playerScore = 0
 let playerLevel = 1
 let count = 0
 let snake = []
-let deleteSnake = 0 //What is this for?
 let foodEaten = false
 let addedSnake = centerSnake
 let rando = false
@@ -23,7 +23,7 @@ let pointInterval = 5
 
 for (let i = 0; i < gridSize; i++) {
   const createDiv = document.createElement('div')
-  //delete later V
+  //create playable board and board limits
   if (i % 28 === 27 || i % 28 === 0 || i < 28 || i > 756) {
     createDiv.style.backgroundColor = '#edae6f'
     createDiv.setAttribute('class', 'board no-go')
@@ -37,13 +37,13 @@ score.innerHTML = `Score :  ${playerScore}`
 level.innerHTML = `Level : ${playerLevel}`
 // grabs all create div boxes
 // will try and use to make code simplier ***future
-const board = document.querySelectorAll('.board')
+/*const board = document.querySelectorAll('.board')
 const noGo = document.querySelectorAll('.no-go')
 noGo.forEach((no) => {
   let boxNum = no.getAttribute('id')
   boxNum = boxNum.replace('box', '')
   noGoSquares.push(boxNum)
-})
+})*/
 
 //Ways to lose game, touch border, or self
 const restraint = () => {
@@ -86,7 +86,7 @@ const snakeSize = () => {
     locationSquare.style.borderRadius = ''
   }
 }
-// figure out why it stops? change range of random to smaller
+
 const foodLocation = () => {
   let randNum = Math.floor(Math.random() * gridSize)
   snake.forEach((n) => {

@@ -4,7 +4,6 @@
   box-sizing: border-box;
   color: #fff;
   margin:0;
-  /*font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif*/
   font-family: 'Work Sans', sans-serif;
 }
 main{
@@ -32,7 +31,7 @@ h1{
 section{
   margin: 0 auto;
   background-color: #c78866;
-  border:1.5vh solid #53bcd6;
+  border:1vh solid #53bcd6;
   border-radius: 5vh;
   width: 95%;
 }
@@ -121,14 +120,22 @@ a{
   border-radius: 0 0 100% 0;
 }
 
-@media screen and (max-width: 896px){
+
+/*for tablet & phones */
+@media screen and (max-width: 768px){
+  main{
+    grid-template-rows: 10vh 60vh 30vh;
+  }
   h1, #score, #level{
     border:.25vh solid #53bcd6;
   }
   h1{
-    font-size: 4vh;
+    font-size: 2vh;
+    margin-top: 2vh;
   }
-
+  header{
+    margin:0 auto;
+  }
   section{
     margin: 0 auto;
     background-color:transparent;
@@ -136,7 +143,7 @@ a{
     border-radius:0;
   }
   footer{
-    margin-top: -10vh
+    margin-top: -15vh
   }
   button{
     width: 15vh;
@@ -144,19 +151,19 @@ a{
   }
   .directions{
     text-align: center;
-    margin-left: -15vh;
     width: 30vh;
   }
   .game-area{
-    grid-template-columns: repeat(28,2vh);
-    grid-template-rows: repeat(28,2vh);
-    width: 57.5vh;
+    grid-template-columns: repeat(28,1.25vh);
+    grid-template-rows: repeat(28,1.25vh);
+    width: 36.5vh;
   }
 
   .controller{
     display: grid;
     grid-template: 1fr 1fr /1fr 1fr 1fr;
     padding-bottom: 10vh;
+    margin-top:-12;
   }
 
   .controls{
@@ -164,17 +171,18 @@ a{
     background-color: #c75136;
     width: 15vh;
     padding: 2vh;
-    margin:1vh;
+    margin: 1vh;
     border-radius: 2vh;
     border: .5vh solid #3792ab;
   }
 
   #score, #level{
-    font-size: 2vh;
-    width: 15vh;
+    font-size: 1.5vh;
+    width: 10vh;
   }
-  #reset, #end-button{  
-    margin-top: 6vh;
+  #reset, #end-button{
+    margin:0;  
+    margin-top: -6vh;
   }
 
 }

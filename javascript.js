@@ -18,7 +18,7 @@ let rando = false
 let animate = null
 let direction = ''
 let lastDirection = ''
-let speed = 125
+let speed = 100
 let pointInterval = 5
 
 for (let i = 0; i < gridSize; i++) {
@@ -217,7 +217,7 @@ const reset = () => {
   playerScore = 0
   playerLevel = 0
   gameOverSceen.style.opacity = '0'
-  speed = 125
+  speed = 100
   pointInterval = 5
   score.innerHTML = `Score :  ${playerScore}`
   level.innerHTML = `Level : ${playerLevel}`
@@ -230,27 +230,33 @@ const reset = () => {
     }
     box.opacity = '1'
     box.borderRadius = ''
-    window.addEventListener('keydown', arrowKeyPressed)
   }
+  window.addEventListener('keydown', arrowKeyPressed)
+  forMobile()
   snakeSize()
   foodLocation()
 }
 
+//Mobile control
+const forMobile = () => {
+  window.removeEventListener('keydown', arrowKeyPressed)
+  controls.forEach((c) => {
+    c.addEventListener('click', function () {
+      direction = c.getAttribute('id')
+      console.log(direction)
+      if (direction != '') {
+        clearInterval(animate)
+        animate = setInterval(function () {
+          animateSnake(direction)
+        }, speed)
+      }
+    })
+  })
+}
+
+forMobile()
 snakeSize()
 foodLocation()
-//Mobile control
-console.log(controls)
-controls.forEach((c) => {
-  c.addEventListener('click', function () {
-    direction = c.getAttribute('id')
-    console.log(direction)
-    if (direction != '') {
-      clearInterval(animate)
-      animate = setInterval(function () {
-        animateSnake(direction)
-      }, speed)
-    }
-  })
-})
+
 window.addEventListener('keydown', arrowKeyPressed)
 resetBtn.addEventListener('click', reset)

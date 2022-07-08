@@ -32,7 +32,7 @@ h1{
 section{
   margin: 0 auto;
   background-color: #c78866;
-  border:2vh solid #53bcd6;
+  border:1.5vh solid #53bcd6;
   border-radius: 5vh;
   width: 95%;
 }
@@ -79,17 +79,29 @@ a{
   top:40%;
   left:40%;
 }
-.start{
+.directions{
   text-align: center;
-  margin:  36vh 48vh;
+  margin: 15vh auto 0 auto;
+  width: 40vh;
+}
+.directions h2{
+  color: #c75136;
+  font-size: 4vh;
+}
+.start{
+  width: 15vh;
   background-color: #c75136;
   font-size: 5vh;
   border:.5vh solid #fff;
   border-radius: 1vh;
   padding-bottom:.5vh;
+  margin: 2vh auto;
 }
 .title{
   margin: 0 auto;
+}
+.controller{
+  display: none;
 }
 #reset, #end-button{
   font-size: 2.5vh;
@@ -109,3 +121,65 @@ a{
   border-radius: 0 0 100% 0;
 }
 
+@media screen and (max-width: 896px){
+  h1, #score, #level{
+    border:.25vh solid #53bcd6;
+  }
+  h1{
+    font-size: 4vh;
+  }
+
+  section{
+    margin: 0 auto;
+    background-color:none;
+    border:none;
+    border-radius:0;
+    width:0;
+  }
+  footer{
+    margin-top: -10vh
+  }
+  button{
+    width: 15vh;
+    height: 8vh;
+  }
+  .directions{
+    text-align: center;
+    margin-left: -15vh;
+    width: 30vh;
+  }
+  .game-area{
+    grid-template-columns: repeat(28,2vh);
+    grid-template-rows: repeat(28,2vh);
+    width: 57.5vh;
+    margin: 5vh 28vh;
+  }
+
+  .controller{
+    display: grid;
+    grid-template: 1fr 1fr /1fr 1fr 1fr;
+    padding-bottom: 10vh;
+  }
+
+  .controls{
+    text-align:center;
+    background-color: #c75136;
+    width: 15vh;
+    padding: 2vh;
+    margin:1vh;
+    border-radius: 2vh;
+    border: .5vh solid #3792ab;
+  }
+
+  #score, #level{
+    font-size: 3vh;
+    width: 20vh;
+  }
+  #reset, #end-button{  
+    margin-top: 6vh;
+  }
+
+  #game-ex{
+    margin:0;
+  }
+}

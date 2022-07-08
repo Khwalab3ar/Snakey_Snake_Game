@@ -1,10 +1,11 @@
 const gameArena = document.querySelector('.game-area')
 const resetBtn = document.querySelector('#reset')
-const gridSize = 784
-const centerSnake = gridSize / 2 + 14
 const level = document.querySelector('#level')
 const score = document.querySelector('#score')
 const gameOverSceen = document.querySelector('.game-done')
+const controls = document.querySelectorAll('.controls')
+const gridSize = 784
+const centerSnake = gridSize / 2 + 14
 const noGoSquares = []
 let playerScore = 0
 let playerLevel = 1
@@ -186,7 +187,7 @@ const arrowKeyPressed = (e) => {
 }
 
 const scoreOrLevel = () => {
-  if (count === 4) {
+  if (count === 10) {
     speed -= 5
     playerLevel++
     level.innerHTML = `Level : ${playerLevel}`
@@ -237,5 +238,19 @@ const reset = () => {
 
 snakeSize()
 foodLocation()
+//Mobile control
+console.log(controls)
+controls.forEach((c) => {
+  c.addEventListener('click', function () {
+    direction = c.getAttribute('id')
+    console.log(direction)
+    if (direction != '') {
+      clearInterval(animate)
+      animate = setInterval(function () {
+        animateSnake(direction)
+      }, speed)
+    }
+  })
+})
 window.addEventListener('keydown', arrowKeyPressed)
 resetBtn.addEventListener('click', reset)

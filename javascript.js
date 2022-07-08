@@ -188,7 +188,11 @@ const arrowKeyPressed = (e) => {
 
 const scoreOrLevel = () => {
   if (count === 10) {
-    speed -= 5
+    if (mobile) {
+      speed -= 2
+    } else {
+      speed -= 5
+    }
     playerLevel++
     level.innerHTML = `Level : ${playerLevel}`
     pointInterval += 5
@@ -215,7 +219,7 @@ const reset = () => {
   direction = ''
   snake = []
   playerScore = 0
-  playerLevel = 0
+  playerLevel = 1
   gameOverSceen.style.opacity = '0'
   speed = 100
   pointInterval = 5
@@ -245,10 +249,14 @@ const forMobile = () => {
       direction = c.getAttribute('id')
       console.log(direction)
       if (direction != '') {
+        mobile = true
+        speed = 150
         clearInterval(animate)
         animate = setInterval(function () {
           animateSnake(direction)
         }, speed)
+      } else {
+        ;('')
       }
     })
   })

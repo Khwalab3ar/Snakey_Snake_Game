@@ -140,10 +140,13 @@ const growOrMove = (addedSnake) => {
 const animateSnake = (direction) => {
   switch (direction) {
     case 'up':
+      console.log('current direction: ', direction)
       if (lastDirection === 'down') {
+        console.log(lastDirection)
         addedSnake += 28
       } else {
         addedSnake -= 28
+        lastDirection = direction
       }
       break
     case 'down':
@@ -151,6 +154,7 @@ const animateSnake = (direction) => {
         addedSnake -= 28
       } else {
         addedSnake += 28
+        lastDirection = direction
       }
       break
     case 'left':
@@ -158,6 +162,7 @@ const animateSnake = (direction) => {
         addedSnake++
       } else {
         addedSnake--
+        lastDirection = direction
       }
       break
     case 'right':
@@ -165,15 +170,11 @@ const animateSnake = (direction) => {
         addedSnake--
       } else {
         addedSnake++
+        lastDirection = direction
       }
       break
     default:
       ''
-  }
-  if (direction === lastDirection) {
-    ;('')
-  } else {
-    lastDirection = direction
   }
   growOrMove(addedSnake)
 }
